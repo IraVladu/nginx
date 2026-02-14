@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Will you be my Valentine?</title>
+
+<style>
+  body {
+    text-align: center;
+    background-color: #ffeef8;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    margin: 0;
+  }
+
+  h1 {
+    margin-top: 50px;
+    color: #d63384;
+    font-size: 40px;
+  }
+
+  #mainGif {
+    width: 300px;
+    margin-top: 30px;
+  }
+
+  button {
+    font-size: 24px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    transition: left 0.2s, top 0.2s;
+  }
+
+  #yesBtn {
+    background-color: #ff4da6;
+    color: white;
+    left: 40%;
+    top: 450px;
+  }
+
+  #noBtn {
+    background-color: #ccc;
+    color: #333;
+    left: 55%;
+    top: 450px;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Will you be my Valentine? 💖</h1>
+
+<img id="mainGif" src="https://media.tenor.com/YRTnNaQNNmwAAAAi/love.gif">
+
+<button id="yesBtn" onclick="location.href='yes.html'">YES 💗</button>
+<button id="noBtn" onclick="location.href='no.html'">NO 💔</button>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+
+  // Functie care muta butonul NO in alta pozitie
+  function moveButton() {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  // Detecteaza mouse-ul si distanta pana la buton
+  document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const distX = mouseX - (rect.left + rect.width/2);
+    const distY = mouseY - (rect.top + rect.height/2);
+    const distance = Math.sqrt(distX*distX + distY*distY);
+
+    if(distance < 100) { // daca mouse-ul se apropie la 100px
+      moveButton();
+    }
+  });
+</script>
+
+</body>
+</html>
